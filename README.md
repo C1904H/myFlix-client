@@ -19,11 +19,11 @@ The main features of the app allow users to:
 
 Required dependencies:
 
-npm install -g parcel
+    npm install -g parcel
 
-npm install --save react react-dom
+    npm install --save react react-dom
 
-npm install -g process
+    npm install -g process
 
 ### Instruct Parcel to build project
 
