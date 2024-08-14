@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
@@ -13,7 +15,7 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password
     };
 
-    fetch('https://movies-flix-100-e95c2855a01d.herokuapp.com/login?Username='+username+'&Password='+password, {
+    fetch('https://movies-flix-100-e95c2855a01d.herokuapp.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -32,32 +34,38 @@ export const LoginView = ({ onLoggedIn }) => {
         }
       })
       .catch((e) => {
+        console.log('error registering the user');
         alert('Something went wrong');
       });
   };
 
     return (
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="formUsername">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            placeholder="Enter your username"
           />
-        </label>
-        <label>
-          Password:
-          <input
+        </Form.Group>
+        
+        <Form.Group controlId="formPassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Enter your password"
           />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     );
   };
 
