@@ -4,9 +4,9 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
+import { ProfileView } from '../profile-view/profile-view';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 
@@ -16,7 +16,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
-  // const [selectedMovie, setSelectedMovie] = useState(null);
+  const [moviesSearch, setMoviesSearch] = useState('');
 
   useEffect(() => {
     if (!token) {
@@ -38,98 +38,131 @@ export const MainView = () => {
             Director: movie.Director.Name
           };
         });
+        localStorage.setItem('movies', JSON.stringify(moviesFromApi));
         setMovies(moviesFromApi);
       })
-        .catch((error) => {
-          console.error('Error fetching movies: ', error);
-          setError(error.message);
-        });
+      .catch((error) => {
+        console.error('Error fetching movies: ', error);
+        setError(error.message);
+      });
   }, [token]);
+
+  const onMoviesSearch = movies.filter((movie) =>
+    movie.Title.toLowerCase().includes(moviesSearch.toLocaleLowerCase())
+  );
 
   return (
     <BrowserRouter>
       <NavigationBar
         user={user}
+        moviesSearch={moviesSearch}
+        setMoviesSearch={setMoviesSearch}
         onLoggedOut={() => {
           setUser(null);
-          setToken(token);
+          setToken(null);
           localStorage.clear();
         }}
       />
+      <br />
       <Row className="justify-content-md-center">
         <Routes>
           <Route
-            path="/signup"
+            path='/signup'
             element={
               <>
                 {user ? (
-                  <Navigate to="/" />
+                  <Navigate to='/' />
                 ) : (
                   <Col md={5}>
                     <SignupView />
-                  </Col>
-                )}
-                </>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <>
-               {user ? (
-                  <Navigate to="/" />
-                ) : (
-                  <Col md={5}>
-                    <LoginView onLoggedIn={(user, token) => {
-                      setUser(user);
-                      setToken(token);
-                    }} 
-                    />
-                  </Col>
-                )}
-                </>
-            }
-          />
-          <Route
-            path="/movies/:movieId"
-            element={
-              <>
-                {!user ? (
-                  <Navigate
-                    to="/login"
-                    replace
-                  />
-                ) : movies.length === 0 ? (
-                  <Col>The list is empty</Col>
-                ) : (
-                  <Col md={8}>
-                    <MovieView movies={movies} />
-          
                   </Col>
                 )}
               </>
             }
           />
           <Route
-            path="/"
+            path='/login'
+            element={
+              <>
+                {user ? (
+                  <Navigate to='/' />
+                ) : (
+                  <Col md={5}>
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path='/users/:Username'
             element={
               <>
                 {!user ? (
                   <Navigate
-                    to="/login"
+                    to='/login'
+                    replace
+                  />
+                ) : (
+                  <ProfileView
+                    user={user}
+                    movies={movies}
+                    token={token}
+                    onSubmit={(user) => setUser(user)}
+                  />
+                )}
+              </>
+            }
+          />
+          <Route
+            path='/movies/:movieId'
+            element={
+              <>
+                {!user ? (
+                  <Navigate
+                    to='/login'
                     replace
                   />
                 ) : movies.length === 0 ? (
                   <Col>The list is empty</Col>
                 ) : (
+                  <Col md={7}>
+                    <MovieView movies={movies} />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path='/'
+            element={
+              <>
+                {!user ? (
+                  <Navigate
+                    to='/login'
+                    replace
+                  />
+                ) : onMoviesSearch.length === 0 ? (
+                  <Col>The list is empty</Col>
+                ) : (
                   <>
-                    {movies.map((movie) => (
+                    {onMoviesSearch.map((movie) => (
                       <Col
                         className="mb-4"
                         key={movie.id}
-                        md={3}
+                        sm={6}
+                        md={4}
+                        lg={3}
                       >
-                        <MovieCard movie={movie} />
+                        <MovieCard
+                          isFavorite={user.FavoriteMovies.includes(movie.id)}
+                          movie={movie}
+                        />
                       </Col>
                     ))}
                   </>
