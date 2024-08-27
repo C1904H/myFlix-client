@@ -1,7 +1,32 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
-$color: steelblue;
+$primary: #fdfaf8;
+$secondary: #faf0e4;
+$tertiary: #9bcdd2;
 
-.my-flix {
-  color: $color;
+body {
+  background-color: $primary;
 }
+
+h2 {
+  color: $tertiary;
+}
+
+h3 {
+ color: #ff8551;
+}
+
+.navbar-brand {
+  font-size: 30px;
+  color: $tertiary;
+}
+
+
+.card{
+  background-color: $secondary;
+
+.card-title {
+   color: #ff8551;
+}
+}
+

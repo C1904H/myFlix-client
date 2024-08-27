@@ -13188,15 +13188,45 @@ textarea.form-control-lg {
   }
 }
 
-.my-flix {
-  color: #4682b4;
+body {
+  background-color: #fdfaf8;
 }
 
-.back-button {
-  color: #f5f5f5;
-  background-color: #1e90ff;
-  border: none;
-  border-radius: 4px;
-  padding: 4px 12px;
+h2, .h2 {
+  color: #9bcdd2;
+}
+
+h3, .h3 {
+  color: #ff8551;
+}
+
+.navbar-brand {
+  color: #9bcdd2;
+  font-size: 30px;
+}
+
+.card {
+  background-color: #faf0e4;
+}
+
+.card .card-title {
+  color: #ff8551;
+}
+
+.movieLink {
+  color: #d29bcd;
+}
+
+.favButton {
+  background-color: #98cdd2;
+  border: #f5f5f5;
+}
+
+.movielink {
+  color: #ff7518;
+}
+
+Button {
+  float: right;
 }
 /*# sourceMappingURL=index.2212206d.css.map */
