@@ -11,27 +11,30 @@ export const FavoriteMovies = ({ user, favoriteMovies }) => {
     <Col>
       <h2 className="title">My favorite movies</h2>
       <Row>
-      {favoriteMovies.length === 0 ? (
-        <p>Your list is empty - select some favorite movies!</p>
-      ) : (
-        favoriteMovies.map((movie) => (
-          <Col
-            key={movie.id}
-            sm={12}
-            md={4}
-          >
-            <Link
-              className="movielink"
-              to={`/movies/${encodeURIComponent(movie.id)}`}
-            ></Link>
-            <MovieCard
+        {/* message if no movies marked as favorites */}
+        {favoriteMovies.length === 0 ? (
+          <p>Your list is empty - select some favorite movies!</p>
+        ) : (
+          // display movie cards for selected favorties
+          favoriteMovies.map((movie) => (
+            <Col
               key={movie.id}
-              isFavorite={user.FavoriteMovies.includes(movie.id)}
-              movie={movie}
-            />
-          </Col>
-        ))
-      )}
+              sm={6}
+              md={4}
+              lg={3}
+            >
+              <Link
+                className="movielink"
+                to={`/movies/${encodeURIComponent(movie.id)}`}
+              ></Link>
+              <MovieCard
+                key={movie.id}
+                isFavorite={user.FavoriteMovies.includes(movie.id)}
+                movie={movie}
+              />
+            </Col>
+          ))
+        )}
       </Row>
     </Col>
   );

@@ -1,10 +1,9 @@
 import React from 'react';
-import Proptypes from 'prop-types';
 import { Navbar, Container, Nav, Form } from 'react-bootstrap';
-import { Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Logo from "../../../img/film_icon.svg";
 
+//exports navigation bar and search box to page views
 export const NavigationBar = ({ user, onLoggedOut, moviesSearch, setMoviesSearch }) => {
   return (
     <Navbar 
@@ -18,7 +17,7 @@ export const NavigationBar = ({ user, onLoggedOut, moviesSearch, setMoviesSearch
           as={Link}
           to="/"
         >
-          MyFlix App
+          myFlix App
           <img
             src={Logo}
             width="70"
@@ -29,7 +28,7 @@ export const NavigationBar = ({ user, onLoggedOut, moviesSearch, setMoviesSearch
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="ms-auto">
             {!user && (
               <>
                 <Nav.Link
@@ -48,6 +47,7 @@ export const NavigationBar = ({ user, onLoggedOut, moviesSearch, setMoviesSearch
             )}
             {user && (
               <>
+              <Nav>
                 <Nav.Link
                   as={Link}
                   to="/"
@@ -61,20 +61,22 @@ export const NavigationBar = ({ user, onLoggedOut, moviesSearch, setMoviesSearch
                   Profile
                 </Nav.Link>
                 <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
-              </>
-            )}
-            </Nav>
-            <Form className="d-flex">
+                </Nav>
+            <Form  className="d-flex">
               <Form.Control
                 id="search-bar"
-                className="me-2"
-                type="text"
+                className="me-3"
+                type="search"
                 value={moviesSearch}
+                placement="start"
                 placeholder="Search for a movie"
                 aria-label="Search"
                 onChange={(e) => setMoviesSearch(e.target.value)}
               />
             </Form>
+            </>
+            )}
+            </Nav>
           
         </Navbar.Collapse>
       </Container>

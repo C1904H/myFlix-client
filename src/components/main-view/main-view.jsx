@@ -11,8 +11,10 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 
 export const MainView = () => {
+  // retrieve user and token from local storage
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedToken = localStorage.getItem('token');
+  // set initial state of user and token on retrieved values
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
@@ -22,7 +24,7 @@ export const MainView = () => {
     if (!token) {
       return;
     }
-
+// fetch movies list
     fetch('https://movies-flix-100-e95c2855a01d.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -46,11 +48,12 @@ export const MainView = () => {
         setError(error.message);
       });
   }, [token]);
-
-  const onMoviesSearch = movies.filter((movie) =>
-    movie.Title.toLowerCase().includes(moviesSearch.toLocaleLowerCase())
+// movies search box
+  const onMoviesSearch = movies.filter((movie) => 
+    movie.Title.toLowerCase().includes(moviesSearch.toLowerCase())
   );
 
+  // displays and sets routes for app's different views
   return (
     <BrowserRouter>
       <NavigationBar
@@ -109,7 +112,7 @@ export const MainView = () => {
                     replace
                   />
                 ) : (
-                  <ProfileView
+                  <ProfileView 
                     user={user}
                     movies={movies}
                     token={token}

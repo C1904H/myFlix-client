@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Link } from 'react-router-dom';
 
+// export to signup view
 export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +19,7 @@ export const SignupView = () => {
       Email: email,
       Birthday: birthday,
     };
-
+// fetch user details from API
     fetch("https://movies-flix-100-e95c2855a01d.herokuapp.com/users", {
       method: "POST",
       body: JSON.stringify(data),
@@ -34,7 +36,10 @@ export const SignupView = () => {
     });
   };
 
+  // Show Signup form
   return (
+    <>
+    <h2>Welcome to myFlix!</h2>
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="signUpFormUsername">
       <Form.Label>Username:</Form.Label>
@@ -80,9 +85,18 @@ export const SignupView = () => {
         />
       </Form.Group>
       <br />
-      <Button variant="primary" type="submit">
+      <Button variant="info" type="submit">
         Submit
       </Button>
+      <br />
+      <br />
+      <Link to={'/login'}>
+     <Button variant="link" 
+       >
+         Already have an account?
+       </Button>{' '}
+       </Link> 
     </Form>
+     </>
   );
 };

@@ -9,6 +9,7 @@ import { Card, Button } from 'react-bootstrap';
 
 import './profile-view.scss';
 
+//export Profile view to main
 export const ProfileView = ({ token, user, movies, onSubmit }) => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
 
@@ -79,6 +80,7 @@ export const ProfileView = ({ token, user, movies, onSubmit }) => {
     }
   };
 
+  // Send updated user information (ie delete account) to the server, endpoint /users/:username
   const handleDeleteAccount = (id) => {
     fetch(
       `https://movies-flix-100-e95c2855a01d.herokuapp.com/users/${storedUser.Username}`,
@@ -100,7 +102,7 @@ export const ProfileView = ({ token, user, movies, onSubmit }) => {
       }
     });
   };
-
+// show user details and update options
   return (
     <>
       <Row>
@@ -124,13 +126,13 @@ export const ProfileView = ({ token, user, movies, onSubmit }) => {
             </Card.Body>
           </Card>
         </Col>
-        <Col s={12} m={6}>
+        <Col sm={12} md={7} lg={7}>
           <Card>
             <Card.Body>
               <Card.Title>
                 <h2>Update profile information:</h2>
               </Card.Title>
-              <Card.Text>
+              <Card.Text as='div'>
                 <UpdateUser
                   formData={formData}
                   handleUpdate={handleUpdate}
@@ -143,6 +145,7 @@ export const ProfileView = ({ token, user, movies, onSubmit }) => {
         </Col>
       </Row>
       <hr />
+      {/* Show favorite movies */}
       <Row className="justify-content-center">
         <FavoriteMovies
           user={user}

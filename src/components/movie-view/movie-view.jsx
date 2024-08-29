@@ -3,14 +3,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import { Button, Row, Col } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import './movie-view.scss';
 
-
+// ecport movieView to main view
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
   const movie = movies.find((movie) => movie.id === movieId);
 
+  // display movie details
   return (
     <div>
       <div>
@@ -25,13 +26,14 @@ export const MovieView = ({ movies }) => {
       <div>
         <span>{movie.Description}</span>
       </div>
-      <div>
-        <span>Director: </span>
+      <br />
+      <div> 
+        <span className="director">Director: </span>
         <span>{movie.Director}</span>
       </div>
       <br />
-      <div>
-        <span>Genre: </span>
+      <div className="genre" >
+        <span className="genre">Genre: </span>
         <span>{movie.Genre}</span>
       </div>
      

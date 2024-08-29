@@ -117,7 +117,6 @@ export const MovieCard = ({ movie, isFavorite }) => {
             </Button>
           </Link>
         </Card.Body>
-        {/* <Card.Footer>{movie.Genre}</Card.Footer> */}
       </Card>
       <Card>
         {isFavorite ? (

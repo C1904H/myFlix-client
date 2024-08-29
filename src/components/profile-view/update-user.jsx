@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import PropTypes from 'prop-types';
 
+// Export Update user details form to profile view
 export const UpdateUser = ({ formData, handleUpdate, handleSubmit }) => {
   return (
     <Row>
@@ -56,6 +57,7 @@ export const UpdateUser = ({ formData, handleUpdate, handleSubmit }) => {
     </Row>
   );
 };
+// Define prop types
 UpdateUser.propTypes = {
   formData: PropTypes.object.isRequired,
   handleUpdate: PropTypes.func.isRequired,
