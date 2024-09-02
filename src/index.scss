@@ -1,11 +1,13 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
-$primary: #fdfaf8;
-$secondary: #faf0e4;
-$tertiary: #9bcdd2;
+$primary: #fdfaf8; //off-white body background
+$secondary: #faf0e4; //oatmeal - card background
+$tertiary: #9bcdd2; // bluey/gray - h2 headers
+$quarternary: #415164; //ink - body text
 
 body {
   background-color: $primary;
+  color: $quarternary;
 }
 
 h2 {
@@ -13,28 +15,24 @@ h2 {
 }
 
 h3 {
- color: #ff8551;
+  color: #ff8551;
 }
 
 .navbar {
   position: relative;
   top: 0;
   z-index: 999;
-  }
+}
 
 .navbar-brand {
   font-size: 30px;
   color: $tertiary;
 }
 
-
-
-.card{
+.card {
   background-color: $secondary;
 
-.card-title {
-   color: #ff8551;
+  .card-title {
+    color: #ff8551;
+  }
 }
-}
-
-

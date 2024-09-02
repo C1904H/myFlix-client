@@ -102,11 +102,15 @@ export const ProfileView = ({ token, user, movies, onSubmit }) => {
       }
     });
   };
-// show user details and update options
+  // show user details
   return (
     <>
-      <Row>
-        <Col>
+      <Row className="justify-content-center">
+        <Col
+          sm={12}
+          md={4}
+          lg={4}
+        >
           <Card>
             <Card.Body>
               <Card.Title>
@@ -126,13 +130,18 @@ export const ProfileView = ({ token, user, movies, onSubmit }) => {
             </Card.Body>
           </Card>
         </Col>
-        <Col sm={12} md={7} lg={7}>
+        <Col
+          sm={12}
+          md={5}
+          lg={5}
+        >
+          {/* // Show update user options */}
           <Card>
             <Card.Body>
               <Card.Title>
                 <h2>Update profile information:</h2>
               </Card.Title>
-              <Card.Text as='div'>
+              <Card.Text as="div">
                 <UpdateUser
                   formData={formData}
                   handleUpdate={handleUpdate}

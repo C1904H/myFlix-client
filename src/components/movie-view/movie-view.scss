@@ -1,9 +1,20 @@
 .director {
   font-weight: bold;
+  color: #0e30ad;
 }
 
 .genre {
-  // color: #604CC3;
+  color: #0e30ad;
   font-weight: bold;
-font-style: italic;
+}
+
+.movieImage {
+  float: left;
+  padding: 4px 12px 4px 12px;
+  height: auto;
+  width: 100%;
+}
+
+span {
+  color: #415164;
 }

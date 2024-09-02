@@ -47,7 +47,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
           console.error(error);
         });
     };
-
+    // Remove from favorites
     const removeFromFavorites = () => {
       fetch(
         `https://movies-flix-100-e95c2855a01d.herokuapp.com/users/${user.Username}/movies/${movie.id}`,
@@ -95,19 +95,17 @@ export const MovieCard = ({ movie, isFavorite }) => {
   };
 
   return (
-    <>
-      <Card>
-        <Card.Img
-          className="w-100, h-50"
-          variant="top"
-          src={movie.Image}
-        />
-        <Card.Body>
-          <Card.Title>{movie.Title}</Card.Title>
-          <Card.Text>
-            {/* {' '} */}
-            {movie.Director} <br />
-          </Card.Text>
+    // <>
+    <Card className="shadow p-3 mb-5 bg-white rounded">
+      <Card.Img
+        className="w-100, h-50"
+        variant="top"
+        src={movie.Image}
+      />
+      <Card.Body>
+        <Card.Title>{movie.Title}</Card.Title>
+        <Card.Text>
+          {movie.Director} <br />
           <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
             <Button
               className="movieLink"
@@ -116,26 +114,26 @@ export const MovieCard = ({ movie, isFavorite }) => {
               Open
             </Button>
           </Link>
-        </Card.Body>
-      </Card>
-      <Card>
+        </Card.Text>
+        {/* Add/Remove favorite buttons */}
         {isFavorite ? (
-          <Button 
+          <Button
+            className="unfavButton"
             variant="secondary"
             onClick={handleRemoveFromFavorites}
           >
             Remove from favorites
           </Button>
         ) : (
-          <Button className="favButton"
-            
+          <Button
+            className="favButton"
             onClick={handleAddToFavorites}
           >
-           ♡ Add to favorites
+            ♡ Add to favorites
           </Button>
         )}
-      </Card>
-    </>
+      </Card.Body>
+    </Card>
   );
 };
 

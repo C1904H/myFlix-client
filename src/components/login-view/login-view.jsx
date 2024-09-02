@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 
 export const LoginView = ({ onLoggedIn }) => {
@@ -25,7 +25,6 @@ export const LoginView = ({ onLoggedIn }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Login response:', data);
         if (data.user) {
           localStorage.setItem('user', JSON.stringify(data.user));
           localStorage.setItem('token', data.token);
@@ -35,26 +34,26 @@ export const LoginView = ({ onLoggedIn }) => {
         }
       })
       .catch((e) => {
-        console.log('error registering the user');
         alert('Something went wrong');
       });
   };
 
-    return (
-      <>
+  return (
+    <>
       <h2>Welcome to myFlix!</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
-            type="text"s
+            type="text"
+            s
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
             placeholder="Enter your username"
           />
         </Form.Group>
-        
+
         <Form.Group controlId="formPassword">
           <Form.Label>Password:</Form.Label>
           <Form.Control
@@ -66,21 +65,18 @@ export const LoginView = ({ onLoggedIn }) => {
           />
         </Form.Group>
         <br />
-        <Button variant="info" type="submit">
+        <Button
+          variant="info"
+          type="submit"
+        >
           Submit
         </Button>
         <br />
-      <br />
-     <Link to={'/signup'}>
-     <Button variant="link" 
-       >
-         Don't have an account?
-       </Button>
-       </Link> 
-       </Form>
-      
-      </>
-    );
-
-  };
-
+        <br />
+        <Link to={'/signup'}>
+          <Button variant="link">Don't have an account?</Button>
+        </Link>
+      </Form>
+    </>
+  );
+};

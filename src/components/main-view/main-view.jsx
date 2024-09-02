@@ -24,7 +24,7 @@ export const MainView = () => {
     if (!token) {
       return;
     }
-// fetch movies list
+    // fetch movies list
     fetch('https://movies-flix-100-e95c2855a01d.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -44,12 +44,11 @@ export const MainView = () => {
         setMovies(moviesFromApi);
       })
       .catch((error) => {
-        console.error('Error fetching movies: ', error);
         setError(error.message);
       });
   }, [token]);
-// movies search box
-  const onMoviesSearch = movies.filter((movie) => 
+  // movies search box
+  const onMoviesSearch = movies.filter((movie) =>
     movie.Title.toLowerCase().includes(moviesSearch.toLowerCase())
   );
 
@@ -70,11 +69,11 @@ export const MainView = () => {
       <Row className="justify-content-md-center">
         <Routes>
           <Route
-            path='/signup'
+            path="/signup"
             element={
               <>
                 {user ? (
-                  <Navigate to='/' />
+                  <Navigate to="/" />
                 ) : (
                   <Col md={5}>
                     <SignupView />
@@ -84,11 +83,11 @@ export const MainView = () => {
             }
           />
           <Route
-            path='/login'
+            path="/login"
             element={
               <>
                 {user ? (
-                  <Navigate to='/' />
+                  <Navigate to="/" />
                 ) : (
                   <Col md={5}>
                     <LoginView
@@ -103,16 +102,16 @@ export const MainView = () => {
             }
           />
           <Route
-            path='/users/:Username'
+            path="/users/:Username"
             element={
               <>
                 {!user ? (
                   <Navigate
-                    to='/login'
+                    to="/login"
                     replace
                   />
                 ) : (
-                  <ProfileView 
+                  <ProfileView
                     user={user}
                     movies={movies}
                     token={token}
@@ -123,18 +122,18 @@ export const MainView = () => {
             }
           />
           <Route
-            path='/movies/:movieId'
+            path="/movies/:movieId"
             element={
               <>
                 {!user ? (
                   <Navigate
-                    to='/login'
+                    to="/login"
                     replace
                   />
                 ) : movies.length === 0 ? (
                   <Col>The list is empty</Col>
                 ) : (
-                  <Col md={7}>
+                  <Col md={8}>
                     <MovieView movies={movies} />
                   </Col>
                 )}
@@ -142,12 +141,12 @@ export const MainView = () => {
             }
           />
           <Route
-            path='/'
+            path="/"
             element={
               <>
                 {!user ? (
                   <Navigate
-                    to='/login'
+                    to="/login"
                     replace
                   />
                 ) : onMoviesSearch.length === 0 ? (
