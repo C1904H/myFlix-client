@@ -13212,6 +13212,10 @@ h3, .h3 {
   font-size: 30px;
 }
 
+.movieLink {
+  color: #d29bcd;
+}
+
 .card {
   background-color: #faf0e4;
 }
@@ -13220,11 +13224,7 @@ h3, .h3 {
   color: #ff8551;
 }
 
-.movieLink {
-  color: #d29bcd;
-}
-
-.favButton {
+.card .favButton {
   float: left;
   background-color: #98cdd2;
   border: #f5f5f5;
@@ -13232,7 +13232,7 @@ h3, .h3 {
   margin-left: 17%;
 }
 
-.unfavButton {
+.card .unfavButton {
   float: left;
   margin-top: 10px;
   margin-left: 10%;

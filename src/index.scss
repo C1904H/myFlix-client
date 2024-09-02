@@ -4,6 +4,7 @@ $primary: #fdfaf8; //off-white body background
 $secondary: #faf0e4; //oatmeal - card background
 $tertiary: #9bcdd2; // bluey/gray - h2 headers
 $quarternary: #415164; //ink - body text
+$link-color: #d29bcd; // mauve
 
 body {
   background-color: $primary;
@@ -29,10 +30,28 @@ h3 {
   color: $tertiary;
 }
 
+.movieLink {
+  color: $link-color;
+}
+
 .card {
   background-color: $secondary;
 
   .card-title {
     color: #ff8551;
+  }
+
+  .favButton {
+    background-color: #98cdd2;
+    border: whitesmoke;
+    float: left;
+    margin-top: 10px;
+    margin-left: 17%;
+  }
+
+  .unfavButton {
+    float: left;
+    margin-top: 10px;
+    margin-left: 10%;
   }
 }

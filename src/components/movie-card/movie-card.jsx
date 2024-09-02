@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import './movie-card.scss';
+// import './movie-card.scss';
 
 export const MovieCard = ({ movie, isFavorite }) => {
   const storedToken = localStorage.getItem('token');
@@ -96,7 +96,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
 
   return (
     // <>
-    <Card className="shadow p-3 mb-5 bg-white rounded">
+    <Card className="shadow p-3 mb-5 bg-rounded">
       <Card.Img
         className="w-100, h-50"
         variant="top"
