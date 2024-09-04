@@ -114,6 +114,7 @@ export const MovieCard = ({ movie, isFavorite }) => {
           </Link>
         </Card.Text>
         {/* Add/Remove favorite buttons */}
+        <br />
         {isFavorite ? (
           <Button
             className="unfavButton"

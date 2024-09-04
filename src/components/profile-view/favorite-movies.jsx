@@ -19,8 +19,8 @@ export const FavoriteMovies = ({ user, favoriteMovies }) => {
             <Col
               key={movie.id}
               sm={6}
-              md={4}
-              lg={3}
+              md={6}
+              lg={4}
             >
               <Link
                 className="movielink"

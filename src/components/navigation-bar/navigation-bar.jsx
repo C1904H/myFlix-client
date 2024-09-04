@@ -14,7 +14,7 @@ export const NavigationBar = ({
     <Navbar
       bg="dark"
       data-bs-theme="dark"
-      expand="lg"
+      expand="md"
       sticky="top"
     >
       <Container>
